@@ -13,15 +13,7 @@ const TablesList = ({ tables, clickHandler, error }) => {
             Capacity: {table.capacity}<br/>
             Table Status: <span data-table-id-status={table.table_id}>{table.reservation_id === null ? 'Free' : 'Occupied'}</span>
           </p>
-          <div className="d-flex justify-content-between">
-            <a
-              className="btn btn-primary"
-              href={`/tables/${table.table_id}/edit`}
-            >
-              Edit
-            </a>
-            <TableFinish table={table} clickHandler={clickHandler} error={error} />
-          </div>
+          <TableFinish table={table} clickHandler={clickHandler} error={error} />
         </div>
       </div>
     </div>

@@ -1,72 +1,74 @@
-import React, { useState } from 'react';
-import { searchReservations } from '../utils/api';
-import ErrorAlert from '../layout/ErrorAlert';
-import ReservationsList from './ReservationsList';
+import React, { useState } from "react";
+import { searchReservations } from "../utils/api";
+import ErrorAlert from "../layout/ErrorAlert";
+import ReservationsList from "./ReservationsList";
 
 const SearchReservations = () => {
-  const [inputData, setInputData] = useState('');
+  const [inputData, setInputData] = useState("");
   const [error, setError] = useState(null);
   const [reservations, setReservations] = useState([]);
 
-  const submitHandler = async (submitEvent) => {
-    submitEvent.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     setError(null);
 
     try {
       const response = await searchReservations(inputData);
       setReservations(response);
-      setInputData('');
+      setInputData("");
     } catch (error) {
       setError(error);
     }
   };
 
-  const changeHandler = (event) => {
+  const handleChange = (event) => {
     setInputData(event.target.value);
   };
 
-  const resetError = () => {
+  const handleResetError = () => {
     setError(null);
   };
 
   return (
     <main>
-      <div className="col form-group">
-        <div className="row d-md-flex my-3">
-          <h2>Find reservation</h2>
-          <ErrorAlert error={error} resetError={resetError} />
+      <div className="col-lg-6 form-group mx-auto">
+        <div className="row my-3 justify-content-center">
+          <h2 className="custom-heading">Find reservation</h2>
+          <ErrorAlert error={error} resetError={handleResetError} />
         </div>
 
-        <form onSubmit={submitHandler}>
-          <div className="row input-group mb-3">
+        <form onSubmit={handleSubmit}>
+          <div className="row input-group mb-3 justify-content-center">
             <input
               type="text"
-              className="form-control"
+              className="custom-input form-control"
               name="mobile_number"
               placeholder="Enter a customer's phone number"
               aria-label="mobile_number"
-              aria-describedby="basic-addon2"
+              aria-describedby="custom-addon"
               required
               value={inputData}
-              onChange={changeHandler}
+              onChange={handleChange}
             />
-            <button className="btn btn-primary" id="basic-addon2" type="submit">
-              Find
-            </button>
+            <div className="input-group-append">
+              <button className="custom-button btn btn-primary" id="custom-addon" type="submit">
+                Find
+              </button>
+            </div>
           </div>
         </form>
       </div>
 
-      <div className="container-fluid col">
-        <div className="row d-md-flex mb-3">
-          <h4>Search Result</h4>
+      <div className="container-fluid col-lg-6">
+        <div className="row mb-3">
+          <h4 className="custom-subheading">Search Result</h4>
         </div>
         {reservations.length > 0 ? (
-          <div className="row d-md-flex mb-3">
+          <div className="row mb-3">
             <ReservationsList reservations={reservations} />
           </div>
         ) : (
-          <div className="row d-md-flex mb-3 alert alert-dark text-center" role="alert">
+          <div className="row mb-3 alert alert-dark text-center custom-alert" role="alert">
             No reservations found
           </div>
         )}

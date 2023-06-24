@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-
-//import components
 import TableForm from "./TableForm";
 import ErrorAlert from "../layout/ErrorAlert";
-
-//import utility functions
 import { createTable } from "../utils/api";
 
 const NewTable = () => {

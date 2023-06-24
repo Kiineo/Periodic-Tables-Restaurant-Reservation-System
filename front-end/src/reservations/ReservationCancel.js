@@ -29,6 +29,7 @@ const ReservationCancel = ({ reservation_id }) => {
         className="btn btn-secondary custom-btn"
         data-reservation-id-cancel={reservation_id}
         onClick={clickHandler}
+        required
         style={{ backgroundColor: "red", color: "white" }}
       >
         Cancel
