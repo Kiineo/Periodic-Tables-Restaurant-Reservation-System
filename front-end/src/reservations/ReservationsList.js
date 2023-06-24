@@ -1,5 +1,6 @@
 import React from "react";
-import ReservationCancel from "./ReservationCancel";
+import ReservationCancel from './ReservationCancel';
+
 
 const ReservationsList = ({ reservations, date, cancelHandler }) => {
   const handleCancelReservation = async (reservationId) => {
