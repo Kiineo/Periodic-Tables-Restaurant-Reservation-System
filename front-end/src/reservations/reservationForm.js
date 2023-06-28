@@ -67,7 +67,7 @@ const ReservationForm = ({
               <div className="col-sm-8">
                 <input
                   className="form-control"
-                  type="tel"
+                  type="number"
                   id="mobile_number"
                   name="mobile_number"
                   required={true}
